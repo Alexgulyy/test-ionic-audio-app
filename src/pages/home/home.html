@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngFor="let item of audioTypes" id="{{item}}">
+    {{item.name}} <br>
+    <audio
+      src="https://dl.dropboxusercontent.com/u/6972563/audio/1916firstchapterscollection_09_various_64kb.{{item.name}}"
+      controls="controls" preload="none"
+      (play)="onPlayStateChange(item, $event)"
+      (timeupdate)="onPlayStateChange(item, $event)"
+      (error)="onPlayStateChange(item, $event)"
+      (pause)="onPauseReset(item, $event)"
+
+      ></audio>
+    <span>{{item.audioTimeout}}</span>
+    <br/>
+    <button class="change-current-time" (click)="playAndChangeCurrentTime($event)">Play and change currentTime</button>
+    <br/>
+    <br/>
+    <button class="play-media" (click)="playMedia(item, $event)">Play/Stop through Media plugin</button>
+    <span class="media-timeout">{{item.mediaTimeout}}</span>
+  </div>
+  <br/>
+  <br/>
+  <button class="reload" (click)="reload()">Reload</button>
+</ion-content>
